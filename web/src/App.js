@@ -12,8 +12,9 @@ const App = () => {
 
   React.useEffect(() => {
     if (!loading && !error) {
-      const onlyJobs = data[0]['data'].slice(3).map((obj) => {
+      const onlyJobs = data[0]['data'].slice(3).map((obj, idx) => {
         const job = {}
+        job['key'] = idx
         job['company'] = obj['Company name']
         job['about'] = obj['What does the company do, in one sentence?']
         job['links'] = obj['Link to position(s) hiring for']
@@ -24,7 +25,6 @@ const App = () => {
         job['notes'] = obj['Additional note from Gergely']
         return job
       })
-      console.log(onlyJobs)
       setJobs(onlyJobs)
     }
   }, [ data, error, loading ])
