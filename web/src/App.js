@@ -1,5 +1,4 @@
 import useGoogleSheets from 'use-google-sheets';
-import logo from './logo.svg';
 import './App.css';
 
 const App = () => {
@@ -15,7 +14,7 @@ const App = () => {
   if (error) {
     return <div>Error!</div>;
   }
-  
+
   return (
     <div className="App">
       {JSON.stringify(data)}
