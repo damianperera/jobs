@@ -11,15 +11,27 @@ const App = () => {
   });
 
   React.useEffect(() => {
-    const onlyJobs = data[0]
     if (!loading && !error) {
-      setJobs(onlyJobs['data'].slice(3))
+      const onlyJobs = data[0]['data'].slice(3).map((obj) => {
+        const job = {}
+        job['company'] = obj['Company name']
+        job['about'] = obj['What does the company do, in one sentence?']
+        job['links'] = obj['Link to position(s) hiring for']
+        job['roles'] = obj['Roles hiring for']
+        job['locations'] = obj['Locations hiring in']
+        job['pros'] = obj['If you work in this company: what is one thing you like about this place?']
+        job['comments'] = obj['Any other comments?']
+        job['notes'] = obj['Additional note from Gergely']
+        return job
+      })
+      console.log(onlyJobs)
+      setJobs(onlyJobs)
     }
   }, [ data, error, loading ])
 
   return (
     <div className="App">
-      {JSON.stringify(jobs)}
+      {jobs.map( job => (<li>{JSON.stringify(job)}</li>))}
     </div>
   );
 }
