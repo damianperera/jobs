@@ -70,7 +70,7 @@ const App = () => {
   return (
     <div>
       {jobs.map( job => (
-        <Box sx={{ minWidth: 275 }}>
+        <Box key={job['key']} sx={{ minWidth: 275 }}>
           <Card variant="outlined">
             <StyledCard {...job} />
           </Card>
