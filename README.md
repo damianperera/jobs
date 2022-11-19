@@ -1,2 +1,2 @@
-# jobs
-Jobs listed at the Pragmatic Engineer
+# Jobs - The Pragmatic Engineer
+Jobs listed at The Pragmatic Engineer
