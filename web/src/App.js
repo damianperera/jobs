@@ -1,6 +1,43 @@
 import * as React from 'react';
 import useGoogleSheets from 'use-google-sheets';
-import './App.css';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
+function StyledCard({ company, about, links, roles, locations, pros, comments, notes }) {
+  return (
+    <React.Fragment>
+      <CardContent>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          { about }
+        </Typography>
+        <Typography variant="h5" component="div">
+          { company }
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          { pros }
+        </Typography>
+        <Typography variant="body2">
+          { roles }
+          <br />
+          { locations }
+          <br />
+          { links }
+          <br />
+          { comments }
+          <br />
+          { notes }
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </React.Fragment>
+  )
+}
 
 const App = () => {
   const [jobs, setJobs] = React.useState([]);
@@ -12,7 +49,8 @@ const App = () => {
 
   React.useEffect(() => {
     if (!loading && !error) {
-      const onlyJobs = data[0]['data'].slice(3).map((obj, idx) => {
+      const onlyJobs = data[0]['data'].slice(3)
+      const jobs = onlyJobs.map((obj, idx) => {
         const job = {}
         job['key'] = idx
         job['company'] = obj['Company name']
@@ -25,13 +63,19 @@ const App = () => {
         job['notes'] = obj['Additional note from Gergely']
         return job
       })
-      setJobs(onlyJobs)
+      setJobs(jobs)
     }
   }, [ data, error, loading ])
 
   return (
-    <div className="App">
-      {jobs.map( job => (<li>{JSON.stringify(job)}</li>))}
+    <div>
+      {jobs.map( job => (
+        <Box sx={{ minWidth: 275 }}>
+          <Card variant="outlined">
+            <StyledCard {...job} />
+          </Card>
+        </Box>
+      ))}
     </div>
   );
 }
