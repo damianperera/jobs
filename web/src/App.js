@@ -1,15 +1,15 @@
 import * as React from 'react';
 import useGoogleSheets from 'use-google-sheets';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 
 function StyledCard({ company, about, links, roles, locations, pros, comments, notes }) {
   return (
-    <React.Fragment>
+    <Card>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           { about }
@@ -35,7 +35,7 @@ function StyledCard({ company, about, links, roles, locations, pros, comments, n
       <CardActions>
         <Button size="small">Learn More</Button>
       </CardActions>
-    </React.Fragment>
+    </Card>
   )
 }
 
@@ -68,15 +68,13 @@ const App = () => {
   }, [ data, error, loading ])
 
   return (
-    <div>
+    <Grid container spacing={2} sx={{padding: "1%"}}>
       {jobs.map( job => (
-        <Box key={job['key']} sx={{ minWidth: 275 }}>
-          <Card variant="outlined">
-            <StyledCard {...job} />
-          </Card>
-        </Box>
+        <Grid item xs={4}>
+          <StyledCard key={job['key']} {...job} />
+        </Grid>
       ))}
-    </div>
+    </Grid>
   );
 }
 
