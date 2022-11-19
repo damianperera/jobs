@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 function StyledCard({ company, about, links, roles, locations, pros, comments, notes }) {
   return (
@@ -47,6 +48,12 @@ const App = () => {
     sheetId: process.env.REACT_APP_GOOGLE_SHEETS_ID,
   });
 
+  const darkTheme = createTheme({
+		palette: {
+			mode: "dark",
+		},
+	})
+
   React.useEffect(() => {
     if (!loading && !error) {
       const onlyJobs = data[0]['data'].slice(3)
@@ -68,13 +75,15 @@ const App = () => {
   }, [ data, error, loading ])
 
   return (
-    <Grid container spacing={2} sx={{padding: "1%"}}>
-      {jobs.map( job => (
-        <Grid item xs={4}>
-          <StyledCard key={job['key']} {...job} />
-        </Grid>
-      ))}
-    </Grid>
+    <ThemeProvider theme={darkTheme}>
+      <Grid container spacing={2} sx={{padding: "1%", backgroundColor: "black"}}>
+        {jobs.map( job => (
+          <Grid item xs={4}>
+            <StyledCard key={job['key']} {...job} />
+          </Grid>
+        ))}
+      </Grid>
+    </ThemeProvider>
   );
 }
 
