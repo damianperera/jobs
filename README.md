@@ -1,2 +1,2 @@
-# Jobs - The Pragmatic Engineer
-Jobs listed at The Pragmatic Engineer
+# Tech Jobs
+Community sourced tech jobs
