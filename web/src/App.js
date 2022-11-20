@@ -12,11 +12,8 @@ function StyledCard({ company, about, links, roles, locations, pros, comments, n
   return (
     <Card sx={{
       height: '250px',
-      ".MuiCard-root": {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between'
-      }
+      display: "flex",
+      flexDirection: "column"
     }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -52,7 +49,7 @@ function StyledCard({ company, about, links, roles, locations, pros, comments, n
           Locations: { locations }
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{marginTop: "auto"}}>
         <Button size="small">Learn More</Button>
       </CardActions>
     </Card>
