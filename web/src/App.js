@@ -170,7 +170,7 @@ const App = () => {
                 autoFocus
                 required
                 id="search"
-                placeholder={`Search Jobs`}
+                placeholder={`Search ${jobs.length} jobs in tech`}
                 variant="outlined"
                 sx={{
                   border: "1px solid rgba(81, 81, 81, 1)",
