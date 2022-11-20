@@ -2,7 +2,7 @@ import * as React from 'react'
 import useGoogleSheets from 'use-google-sheets'
 import extractUrls from 'extract-urls'
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import { KeyRounded, GitHub, Menu } from "@mui/icons-material"
+import { KeyRounded, GitHub, Menu, Place } from "@mui/icons-material"
 import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box } from '@mui/material'
 
 function StyledCard({ company, about, links, roles, locations, pros, comments, notes }) {
@@ -43,14 +43,14 @@ function StyledCard({ company, about, links, roles, locations, pros, comments, n
             WebkitBoxOrient: "vertical"
           }}
         >
-          Locations: { locations }
+          <Place sx={{ fontSize: '1rem', verticalAlign: 'middle', paddingBottom: '1%'}} /> { locations }
         </Typography>
       </CardContent>
       <CardActions sx={{marginTop: "auto"}}>
         {links && links.map( (link, idx) => (
           <Button key={idx} size="small" onClick={() => {
             window.open(link, "_blank", "noopener,noreferrer")
-          }}>URL {idx}</Button>
+          }}>Link {idx + 1}</Button>
         ))}
       </CardActions>
     </Card>
