@@ -346,7 +346,6 @@ const App = () => {
         <Grid display="flex" container spacing={3} columns={{ xs: 3, sm: 6, md: 12 }}>
           {searchedJobs.map(job => (
             <Grid key={job['key']} item xs={3}>
-
               <StyledCard {...job} setSelectedJob={setSelectedJob} />
             </Grid>
           ))}
