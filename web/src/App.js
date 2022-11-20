@@ -3,7 +3,7 @@ import useGoogleSheets from 'use-google-sheets'
 import extractUrls from 'extract-urls'
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import { KeyRounded, GitHub, Menu, Place, Search } from "@mui/icons-material"
-import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box, TextField, Container, Slide } from '@mui/material'
+import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box, TextField, Container } from '@mui/material'
 
 function StyledCard(props) {
   return (
@@ -64,7 +64,7 @@ const ViewMoreSlider = (props) => {
   return (
     <Drawer open={showSlider} anchor="right" onClose={() => { props.setSelectedJob(null) }} >
       <Box
-        sx={{ width: 350 }}
+        sx={{ width: 600, maxWidth: "80vw" }}
         role="presentation"
       >
         {JSON.stringify(props.selectedJob)}
