@@ -209,13 +209,15 @@ const App = () => {
           </Box>
         </Toolbar>
       </AppBar>
-      <Grid container spacing={2} columns={{ xs: 3, sm: 6, md: 12 }} sx={{ paddingLeft: "5%", paddingRight: "5%", paddingTop: "1%", backgroundColor: "black" }}>
-        {searchedJobs.map(job => (
-          <Grid key={job['key']} item xs={3}>
-            <StyledCard {...job} />
-          </Grid>
-        ))}
-      </Grid>
+      <Box sx={{height: "100%", width: "100%", color: "black", p: 3}}>
+        <Grid display="flex" container spacing={3} columns={{ xs: 3, sm: 6, md: 12 }}>
+          {searchedJobs.map(job => (
+            <Grid key={job['key']} item xs={3}>
+              <StyledCard {...job} />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </ThemeProvider>
   );
 }
