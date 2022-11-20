@@ -2,8 +2,8 @@ import * as React from 'react'
 import useGoogleSheets from 'use-google-sheets'
 import extractUrls from 'extract-urls'
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import { KeyRounded, GitHub, Menu, Place } from "@mui/icons-material"
-import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box } from '@mui/material'
+import { KeyRounded, GitHub, Menu, Place, Search } from "@mui/icons-material"
+import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box, TextField, Container } from '@mui/material'
 
 function StyledCard({ company, about, links, roles, locations, pros, comments, notes }) {
   return (
@@ -165,7 +165,37 @@ const App = () => {
             </Box>
           </Drawer>
           <Box display="flex" justifyContent="center" alignItems="center" sx={{ flexGrow: 1 }}>
-
+            <Container maxWidth="sm">
+              <TextField
+                autoFocus
+                required
+                id="search"
+                placeholder={`Search Jobs`}
+                variant="outlined"
+                sx={{
+                  border: "1px solid rgba(81, 81, 81, 1)",
+                  borderRadius: "4px",
+                  width: "100%",
+                  "& .MuiOutlinedInput-root.Mui-focused": {
+                    "& > fieldset": {
+                      border: 0,
+                    },
+                  },
+                  "& .MuiInputBase-root": {
+                    "& > fieldset": {
+                      border: "0 !important",
+                    },
+                  },
+                }}
+                InputProps={{
+                  endAdornment: (
+                    <IconButton aria-label="search" size="small">
+                      <Search />
+                    </IconButton>
+                  ),
+                }}
+              />
+            </Container>
           </Box>
         </Toolbar>
       </AppBar>
