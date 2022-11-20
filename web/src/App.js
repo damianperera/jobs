@@ -1,8 +1,9 @@
-import * as React from 'react';
-import useGoogleSheets from 'use-google-sheets';
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import * as React from 'react'
+import useGoogleSheets from 'use-google-sheets'
+import extractUrls from 'extract-urls'
+import { ThemeProvider, createTheme } from "@mui/material/styles"
 import { KeyRounded, GitHub, Menu } from "@mui/icons-material"
-import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box } from '@mui/material';
+import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box } from '@mui/material'
 
 function StyledCard({ company, about, links, roles, locations, pros, comments, notes }) {
   return (
@@ -22,7 +23,7 @@ function StyledCard({ company, about, links, roles, locations, pros, comments, n
           {/* { pros } */}
         </Typography>
         <Typography
-          variant="body2"
+          variant="body1"
           sx={{
             overflow: "hidden",
             display: "-webkit-box",
@@ -46,7 +47,11 @@ function StyledCard({ company, about, links, roles, locations, pros, comments, n
         </Typography>
       </CardContent>
       <CardActions sx={{marginTop: "auto"}}>
-        <Button size="small">Learn More</Button>
+        {links && links.map( (link, idx) => (
+          <Button key={idx} size="small" onClick={() => {
+            window.open(link, "_blank", "noopener,noreferrer")
+          }}>URL {idx}</Button>
+        ))}
       </CardActions>
     </Card>
   )
@@ -82,7 +87,7 @@ const App = () => {
         job['key'] = idx
         job['company'] = obj['Company name']
         job['about'] = obj['What does the company do, in one sentence?']
-        job['links'] = obj['Link to position(s) hiring for']
+        job['links'] = extractUrls(obj['Link to position(s) hiring for'])
         job['roles'] = obj['Roles hiring for']
         job['locations'] = obj['Locations hiring in']
         job['pros'] = obj['If you work in this company: what is one thing you like about this place?']
@@ -168,7 +173,7 @@ const App = () => {
       <Grid container spacing={2} columns={{ xs: 3, sm: 6, md: 12 }} sx={{padding: "5%", backgroundColor: "black"}}>
         {jobs.map( job => (
           <Grid key={job['key']} item xs={3}>
-            <StyledCard {...job} />
+            <StyledCard {...job}/>
           </Grid>
         ))}
       </Grid>
