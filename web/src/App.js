@@ -142,7 +142,9 @@ const App = () => {
                 <Tooltip title="GitHub">
                   <ListItem key="repository" disablePadding>
                     <ListItemButton
-                    // onClick={handleRepositoryClick}
+                      onClick={() => {
+                        window.open("https://github.com/damianperera/jobs", "_blank", "noopener,noreferrer")
+                      }}
                     >
                       <ListItemIcon>
                         <GitHub />
@@ -154,7 +156,9 @@ const App = () => {
                 <Tooltip title="MIT License">
                   <ListItem key="license" disablePadding>
                     <ListItemButton
-                    // onClick={handleLicenseClick}
+                      onClick={() => {
+                        window.open("https://github.com/damianperera/jobs/blob/main/LICENSE", "_blank", "noopener,noreferrer")
+                      }}
                     >
                       <ListItemIcon>
                         <KeyRounded />
@@ -209,7 +213,7 @@ const App = () => {
           </Box>
         </Toolbar>
       </AppBar>
-      <Box sx={{height: "100%", width: "100%", color: "black", p: 3}}>
+      <Box sx={{ height: "100%", width: "100%", color: "black", p: 3 }}>
         <Grid display="flex" container spacing={3} columns={{ xs: 3, sm: 6, md: 12 }}>
           {searchedJobs.map(job => (
             <Grid key={job['key']} item xs={3}>
