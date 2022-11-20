@@ -17,7 +17,7 @@ function StyledCard({ company, about, links, roles, locations, pros, comments, n
           {/* { about } */}
         </Typography>
         <Typography variant="h5" component="div">
-          { company }
+          {company}
         </Typography>
         <Typography
           variant="body2"
@@ -30,10 +30,9 @@ function StyledCard({ company, about, links, roles, locations, pros, comments, n
           }}
           color="text.secondary"
         >
-          <Place sx={{ fontSize: '1rem', verticalAlign: 'middle', paddingBottom: '1%'}} /> { locations }
+          <Place sx={{ fontSize: '1rem', verticalAlign: 'middle', paddingBottom: '1%' }} /> {locations}
         </Typography>
-        
-        <Divider sx={{ marginTop: "2%", marginBottom: "2%"}} />
+        <Divider sx={{ marginTop: "2%", marginBottom: "3%" }} />
         <Typography
           variant="body1"
           sx={{
@@ -43,11 +42,11 @@ function StyledCard({ company, about, links, roles, locations, pros, comments, n
             WebkitBoxOrient: "vertical",
           }}
         >
-          { roles }
+          {roles}
         </Typography>
       </CardContent>
-      <CardActions sx={{marginTop: "auto"}}>
-        {links && links.map( (link, idx) => (
+      <CardActions sx={{ marginTop: "auto" }}>
+        {links && links.map((link, idx) => (
           <Button key={idx} size="small" onClick={() => {
             window.open(link, "_blank", "noopener,noreferrer")
           }}>Link {idx + 1}</Button>
@@ -61,12 +60,12 @@ const App = () => {
   const [jobs, setJobs] = React.useState([])
   const [menuToggle, setMenuToggle] = React.useState(false)
 
-	const toggleMenu = (open) => (event) => {
-		if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
-			return
-		}
-		setMenuToggle(open)
-	}
+  const toggleMenu = (open) => (event) => {
+    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+      return
+    }
+    setMenuToggle(open)
+  }
 
   const { data, loading, error } = useGoogleSheets({
     apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -74,10 +73,10 @@ const App = () => {
   });
 
   const darkTheme = createTheme({
-		palette: {
-			mode: "dark",
-		},
-	})
+    palette: {
+      mode: "dark",
+    },
+  })
 
   React.useEffect(() => {
     if (!loading && !error) {
@@ -97,83 +96,83 @@ const App = () => {
       })
       setJobs(jobs)
     }
-  }, [ data, error, loading ])
+  }, [data, error, loading])
 
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <AppBar position="sticky">
-			<Toolbar sx={{ height: "10vh" }}>
-				<IconButton
-					size="large"
-					edge="start"
-					color="inherit"
-					aria-label="menu"
-					sx={{ mr: 2 }}
-					onClick={toggleMenu(true)}
-				>
-					<Menu />
-				</IconButton>
-				<Drawer open={menuToggle} onClose={toggleMenu(false)}>
-          <Box
-            sx={{ width: 200 }}
-            role="presentation"
-            onClick={toggleMenu(false)}
-            onKeyDown={toggleMenu(false)}
+        <Toolbar sx={{ height: "10vh" }}>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            onClick={toggleMenu(true)}
           >
-            <ListItemText
-              primary="Jobs"
-              secondary="The Pragmatic Engineer"
-              sx={{
-                marginLeft: 1,
-                ".MuiListItemText-primary": { fontWeight: "bold" },
-              }}
-            />
-            <Divider />
+            <Menu />
+          </IconButton>
+          <Drawer open={menuToggle} onClose={toggleMenu(false)}>
             <Box
-              sx={{
-                position: "fixed",
-                bottom: 0,
-                width: 200,
-              }}
+              sx={{ width: 200 }}
+              role="presentation"
+              onClick={toggleMenu(false)}
+              onKeyDown={toggleMenu(false)}
             >
+              <ListItemText
+                primary="Jobs"
+                secondary="The Pragmatic Engineer"
+                sx={{
+                  marginLeft: 1,
+                  ".MuiListItemText-primary": { fontWeight: "bold" },
+                }}
+              />
               <Divider />
-              <Tooltip title="GitHub">
-                <ListItem key="repository" disablePadding>
-                  <ListItemButton 
+              <Box
+                sx={{
+                  position: "fixed",
+                  bottom: 0,
+                  width: 200,
+                }}
+              >
+                <Divider />
+                <Tooltip title="GitHub">
+                  <ListItem key="repository" disablePadding>
+                    <ListItemButton
                     // onClick={handleRepositoryClick}
-                  >
-                    <ListItemIcon>
-                      <GitHub />
-                    </ListItemIcon>
-                    <ListItemText primary="Repository" />
-                  </ListItemButton>
-                </ListItem>
-              </Tooltip>
-              <Tooltip title="MIT License">
-                <ListItem key="license" disablePadding>
-                  <ListItemButton 
+                    >
+                      <ListItemIcon>
+                        <GitHub />
+                      </ListItemIcon>
+                      <ListItemText primary="Repository" />
+                    </ListItemButton>
+                  </ListItem>
+                </Tooltip>
+                <Tooltip title="MIT License">
+                  <ListItem key="license" disablePadding>
+                    <ListItemButton
                     // onClick={handleLicenseClick}
-                  >
-                    <ListItemIcon>
-                      <KeyRounded />
-                    </ListItemIcon>
-                    <ListItemText primary="License" />
-                  </ListItemButton>
-                </ListItem>
-              </Tooltip>
+                    >
+                      <ListItemIcon>
+                        <KeyRounded />
+                      </ListItemIcon>
+                      <ListItemText primary="License" />
+                    </ListItemButton>
+                  </ListItem>
+                </Tooltip>
+              </Box>
             </Box>
+          </Drawer>
+          <Box display="flex" justifyContent="center" alignItems="center" sx={{ flexGrow: 1 }}>
+
           </Box>
-        </Drawer>
-				<Box display="flex" justifyContent="center" alignItems="center" sx={{ flexGrow: 1 }}>
-					
-				</Box>
-			</Toolbar>
-		</AppBar>
-      <Grid container spacing={2} columns={{ xs: 3, sm: 6, md: 12 }} sx={{paddingLeft: "5%", paddingRight: "5%", paddingTop: "1%", backgroundColor: "black"}}>
-        {jobs.map( job => (
+        </Toolbar>
+      </AppBar>
+      <Grid container spacing={2} columns={{ xs: 3, sm: 6, md: 12 }} sx={{ paddingLeft: "5%", paddingRight: "5%", paddingTop: "1%", backgroundColor: "black" }}>
+        {jobs.map(job => (
           <Grid key={job['key']} item xs={3}>
-            <StyledCard {...job}/>
+            <StyledCard {...job} />
           </Grid>
         ))}
       </Grid>
