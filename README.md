@@ -1,4 +1,6 @@
 # Tech Jobs
+[![build](https://github.com/damianperera/jobs/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/damianperera/jobs/actions/workflows/deploy.yml)
+
 Community sourced tech jobs
 
 ## Source
