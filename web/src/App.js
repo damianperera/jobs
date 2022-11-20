@@ -5,7 +5,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles"
 import { KeyRounded, GitHub, Menu, Place, Search } from "@mui/icons-material"
 import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box, TextField, Container } from '@mui/material'
 
-function StyledCard({ company, about, links, roles, locations, pros, comments, notes }) {
+function StyledCard(props) {
   return (
     <Card sx={{
       height: '250px',
@@ -17,7 +17,7 @@ function StyledCard({ company, about, links, roles, locations, pros, comments, n
           {/* { about } */}
         </Typography>
         <Typography variant="h5" component="div">
-          {company}
+          {props.company}
         </Typography>
         <Typography
           variant="body2"
@@ -30,7 +30,7 @@ function StyledCard({ company, about, links, roles, locations, pros, comments, n
           }}
           color="text.secondary"
         >
-          <Place sx={{ fontSize: '1rem', verticalAlign: 'middle', paddingBottom: '1%' }} /> {locations}
+          <Place sx={{ fontSize: '1rem', verticalAlign: 'middle', paddingBottom: '1%' }} /> {props.locations}
         </Typography>
         <Divider sx={{ marginTop: "2%", marginBottom: "3%" }} />
         <Typography
@@ -42,11 +42,11 @@ function StyledCard({ company, about, links, roles, locations, pros, comments, n
             WebkitBoxOrient: "vertical",
           }}
         >
-          {roles}
+          {props.roles}
         </Typography>
       </CardContent>
       <CardActions sx={{ marginTop: "auto" }}>
-        {links && links.map((link, idx) => (
+        {props.links && props.links.map((link, idx) => (
           <Button key={idx} size="small" onClick={() => {
             window.open(link, "_blank", "noopener,noreferrer")
           }}>Link {idx + 1}</Button>
@@ -58,6 +58,7 @@ function StyledCard({ company, about, links, roles, locations, pros, comments, n
 
 const App = () => {
   const [jobs, setJobs] = React.useState([])
+  const [searchedJobs, setSearchedJobs] = React.useState([])
   const [menuToggle, setMenuToggle] = React.useState(false)
 
   const toggleMenu = (open) => (event) => {
@@ -95,6 +96,7 @@ const App = () => {
         return job
       })
       setJobs(jobs)
+      setSearchedJobs(jobs)
     }
   }, [data, error, loading])
 
@@ -170,8 +172,16 @@ const App = () => {
                 autoFocus
                 required
                 id="search"
-                placeholder={`Search ${jobs.length} jobs in tech`}
+                placeholder={`Search from ${jobs.length} community sourced jobs in tech`}
                 variant="outlined"
+                onChange={(event) => {
+                  const text = event.target.value
+                  if (text) {
+                    setSearchedJobs(jobs.filter(job => Object.keys(job).some(key => typeof job[key] === 'string' && job[key].toLowerCase().includes(text.toLowerCase()))))
+                  } else {
+                    setSearchedJobs(jobs)
+                  }
+                }}
                 sx={{
                   border: "1px solid rgba(81, 81, 81, 1)",
                   borderRadius: "4px",
@@ -200,7 +210,7 @@ const App = () => {
         </Toolbar>
       </AppBar>
       <Grid container spacing={2} columns={{ xs: 3, sm: 6, md: 12 }} sx={{ paddingLeft: "5%", paddingRight: "5%", paddingTop: "1%", backgroundColor: "black" }}>
-        {jobs.map(job => (
+        {searchedJobs.map(job => (
           <Grid key={job['key']} item xs={3}>
             <StyledCard {...job} />
           </Grid>
