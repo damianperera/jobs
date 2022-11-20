@@ -3,7 +3,7 @@ import useGoogleSheets from 'use-google-sheets'
 import extractUrls from 'extract-urls'
 import { debounce } from 'lodash'
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import { KeyRounded, GitHub, Menu, Place, Search, OpenInNew } from "@mui/icons-material"
+import { KeyRounded, GitHub, Menu, Place, Search, OpenInNew, AddCircle, Info } from "@mui/icons-material"
 import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box, TextField, Container } from '@mui/material'
 
 function StyledCard(props) {
@@ -47,11 +47,6 @@ function StyledCard(props) {
         </Typography>
       </CardContent>
       <CardActions sx={{ marginTop: "auto" }}>
-        {/* {props.links && props.links.map((link, idx) => (
-          <Button key={idx} size="small" onClick={() => {
-            window.open(link, "_blank", "noopener,noreferrer")
-          }}>Link {idx + 1}</Button>
-        ))} */}
         <Button size="small" onClick={() => {
           props.setSelectedJob(props)
         }}>View More</Button>
@@ -212,6 +207,30 @@ const App = () => {
                 }}
               />
               <Divider />
+              <ListItem key="create-new" disablePadding>
+                <ListItemButton
+                  onClick={() => {
+                    window.open("https://www.google.com/url?q=https://docs.google.com/forms/d/e/1FAIpQLSfSCZGnIwt_yDIPdGq6o_uhj2WQjIPrU_wa0Hb4P3E6D8M3jw/viewform&sa=D&source=editors&ust=1668949863614887&usg=AOvVaw0RJLuZsVsOtY8KqDSjg_-R", "_blank", "noopener,noreferrer")
+                  }}
+                >
+                  <ListItemIcon>
+                    <AddCircle />
+                  </ListItemIcon>
+                  <ListItemText primary="Add a Company" sx={{ marginLeft: "-10%" }} />
+                </ListItemButton>
+              </ListItem>
+              <ListItem key="google-sheets-source" disablePadding>
+                <ListItemButton
+                  onClick={() => {
+                    window.open("https://docs.google.com/spreadsheets/d/1SMKjAgYxG1iAi_G4E3DJik17-EkO8QiTo6obeZCiBAQ/htmlview?usp=sharing&pru=AAABhLTG1qE*m-nkG9q9MVwWQN9sQQ9DbQ#", "_blank", "noopener,noreferrer")
+                  }}
+                >
+                  <ListItemIcon>
+                    <Info />
+                  </ListItemIcon>
+                  <ListItemText primary="Learn More" sx={{ marginLeft: "-10%" }} />
+                </ListItemButton>
+              </ListItem>
               <Box
                 sx={{
                   position: "fixed",
@@ -230,7 +249,7 @@ const App = () => {
                       <ListItemIcon>
                         <GitHub />
                       </ListItemIcon>
-                      <ListItemText primary="Repository" />
+                      <ListItemText primary="Repository" sx={{ marginLeft: "-10%" }} />
                     </ListItemButton>
                   </ListItem>
                 </Tooltip>
@@ -244,7 +263,7 @@ const App = () => {
                       <ListItemIcon>
                         <KeyRounded />
                       </ListItemIcon>
-                      <ListItemText primary="License" />
+                      <ListItemText primary="License" sx={{ marginLeft: "-10%" }} />
                     </ListItemButton>
                   </ListItem>
                 </Tooltip>
