@@ -210,7 +210,7 @@ const App = () => {
               <ListItem key="create-new" disablePadding>
                 <ListItemButton
                   onClick={() => {
-                    window.open("https://www.google.com/url?q=https://docs.google.com/forms/d/e/1FAIpQLSfSCZGnIwt_yDIPdGq6o_uhj2WQjIPrU_wa0Hb4P3E6D8M3jw/viewform&sa=D&source=editors&ust=1668949863614887&usg=AOvVaw0RJLuZsVsOtY8KqDSjg_-R", "_blank", "noopener,noreferrer")
+                    window.open("https://docs.google.com/forms/d/e/1FAIpQLSfSCZGnIwt_yDIPdGq6o_uhj2WQjIPrU_wa0Hb4P3E6D8M3jw/viewform", "_blank", "noopener,noreferrer")
                   }}
                 >
                   <ListItemIcon>
