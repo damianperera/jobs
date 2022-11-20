@@ -68,7 +68,7 @@ const ViewMoreSlider = (props) => {
         sx={{ width: 600, maxWidth: "80vw" }}
         role="presentation"
       >
-        {showSlider && 
+        {showSlider &&
           <Box sx={{ "& .MuiListItemText-root": { paddingTop: "1%", paddingLeft: "1%", paddingBottom: "2%", paddingRight: "1%" } }}>
             <ListItemText
               primary={props.selectedJob.company}
@@ -115,17 +115,17 @@ const ViewMoreSlider = (props) => {
             {
               props.selectedJob.links && props.selectedJob.links.map((link, idx) => (
                 <ListItem key={idx} disablePadding>
-                    <ListItemButton
-                      onClick={() => {
-                        window.open(link, "_blank", "noopener,noreferrer")
-                      }}
-                    >
-                      <ListItemIcon>
-                        <OpenInNew />
-                      </ListItemIcon>
-                      <ListItemText primary={`View Vacancies ${props.selectedJob.links.length === 1 ? '' : idx + 1}`} sx={{ marginLeft: "-3%" }} />
-                    </ListItemButton>
-                  </ListItem>
+                  <ListItemButton
+                    onClick={() => {
+                      window.open(link, "_blank", "noopener,noreferrer")
+                    }}
+                  >
+                    <ListItemIcon>
+                      <OpenInNew />
+                    </ListItemIcon>
+                    <ListItemText primary={`View Vacancies ${props.selectedJob.links.length === 1 ? '' : idx + 1}`} sx={{ marginLeft: "-3%" }} />
+                  </ListItemButton>
+                </ListItem>
               ))
             }
           </Box>
@@ -205,7 +205,7 @@ const App = () => {
             >
               <ListItemText
                 primary="Tech Jobs"
-                secondary="Sourced from The Pragmatic Engineer"
+                secondary="Community Sourced"
                 sx={{
                   marginLeft: 1,
                   ".MuiListItemText-primary": { fontWeight: "bold" },
@@ -260,13 +260,13 @@ const App = () => {
                 placeholder={`Search from ${jobs.length} community sourced jobs in tech`}
                 variant="outlined"
                 onChange={debounce((event) => {
-                    const text = event.target.value
-                    if (text) {
-                      setSearchedJobs(jobs.filter(job => Object.keys(job).some(key => typeof job[key] === 'string' && job[key].toLowerCase().includes(text.toLowerCase()))))
-                    } else {
-                      setSearchedJobs(jobs)
-                    }
-                  }, 250)
+                  const text = event.target.value
+                  if (text) {
+                    setSearchedJobs(jobs.filter(job => Object.keys(job).some(key => typeof job[key] === 'string' && job[key].toLowerCase().includes(text.toLowerCase()))))
+                  } else {
+                    setSearchedJobs(jobs)
+                  }
+                }, 250)
                 }
                 sx={{
                   border: "1px solid rgba(81, 81, 81, 1)",
