@@ -3,7 +3,7 @@ import useGoogleSheets from 'use-google-sheets'
 import extractUrls from 'extract-urls'
 import { debounce } from 'lodash'
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import { KeyRounded, GitHub, Menu, Place, Search, OpenInNew, Add, Lightbulb } from "@mui/icons-material"
+import { KeyRounded, GitHub, Menu, Place, Search, OpenInNew, Add, Lightbulb, ContentCopy } from "@mui/icons-material"
 import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box, TextField, Container, CircularProgress, Stack } from '@mui/material'
 
 function StyledCard(props) {
@@ -123,6 +123,19 @@ const ViewMoreSlider = (props) => {
                 </ListItem>
               ))
             }
+            <Divider />
+            <ListItem disablePadding>
+              <ListItemButton
+                onClick={() => {
+                  navigator.clipboard.writeText(`https://damianperera.github.io/jobs?company=${props.selectedJob.id}`)
+                }}
+              >
+                <ListItemIcon>
+                  <ContentCopy />
+                </ListItemIcon>
+                <ListItemText primary={`Copy Link`} sx={{ marginLeft: "-3%" }} />
+              </ListItemButton>
+            </ListItem>
           </Box>
         }
       </Box>
@@ -162,12 +175,13 @@ const App = () => {
     if (loading) {
       setIsLoading(true)
     }
-    
+
     if (!loading && !error) {
       const onlyJobs = data[0]['data'].slice(3)
       const jobs = onlyJobs.map((obj, idx) => {
         const job = {}
         job['key'] = idx
+        job['id'] = idx
         job['company'] = obj['Company name']
         job['about'] = obj['What does the company do, in one sentence?']
         job['links'] = extractUrls(obj['Link to position(s) hiring for'])
