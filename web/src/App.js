@@ -3,7 +3,7 @@ import useGoogleSheets from 'use-google-sheets'
 import extractUrls from 'extract-urls'
 import { debounce } from 'lodash'
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import { KeyRounded, GitHub, Menu, Place, Search, OpenInNew, AddCircle, Info } from "@mui/icons-material"
+import { KeyRounded, GitHub, Menu, Place, Search, OpenInNew, Add, Lightbulb } from "@mui/icons-material"
 import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box, TextField, Container } from '@mui/material'
 
 function StyledCard(props) {
@@ -214,7 +214,7 @@ const App = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <AddCircle />
+                    <Add />
                   </ListItemIcon>
                   <ListItemText primary="Add a Company" sx={{ marginLeft: "-10%" }} />
                 </ListItemButton>
@@ -226,7 +226,7 @@ const App = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <Info />
+                    <Lightbulb />
                   </ListItemIcon>
                   <ListItemText primary="Learn More" sx={{ marginLeft: "-10%" }} />
                 </ListItemButton>
