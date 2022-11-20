@@ -49,7 +49,7 @@ function StyledCard(props) {
       <CardActions sx={{ marginTop: "auto" }}>
         <Button size="small" onClick={() => {
           props.setSelectedJob(props)
-        }}>View More</Button>
+        }}>Learn More</Button>
       </CardActions>
     </Card>
   )
