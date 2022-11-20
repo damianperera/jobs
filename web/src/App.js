@@ -2,7 +2,7 @@ import * as React from 'react'
 import useGoogleSheets from 'use-google-sheets'
 import extractUrls from 'extract-urls'
 import { ThemeProvider, createTheme } from "@mui/material/styles"
-import { KeyRounded, GitHub, Menu, Place, Search } from "@mui/icons-material"
+import { KeyRounded, GitHub, Menu, Place, Search, OpenInNew } from "@mui/icons-material"
 import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box, TextField, Container } from '@mui/material'
 
 function StyledCard(props) {
@@ -111,6 +111,23 @@ const ViewMoreSlider = (props) => {
                 ".MuiListItemText-primary": { fontWeight: "bold", fontSize: 14 },
               }}
             />
+            <Divider />
+            {
+              props.selectedJob.links.map((link, idx) => (
+                <ListItem key={idx} disablePadding>
+                    <ListItemButton
+                      onClick={() => {
+                        window.open(link, "_blank", "noopener,noreferrer")
+                      }}
+                    >
+                      <ListItemIcon>
+                        <OpenInNew />
+                      </ListItemIcon>
+                      <ListItemText primary={`Open Link ${idx + 1}`} sx={{ marginLeft: "-5%" }} />
+                    </ListItemButton>
+                  </ListItem>
+              ))
+            }
           </Box>
         }
       </Box>
