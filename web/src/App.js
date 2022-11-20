@@ -96,7 +96,7 @@ const ViewMoreSlider = (props) => {
               }}
             />
             <ListItemText
-              primary="Review"
+              primary="Community Review"
               secondary={props.selectedJob.pros ?? "N/A"}
               sx={{
                 marginLeft: 1,
