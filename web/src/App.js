@@ -123,8 +123,8 @@ const App = () => {
               onKeyDown={toggleMenu(false)}
             >
               <ListItemText
-                primary="Jobs"
-                secondary="The Pragmatic Engineer"
+                primary="Tech Jobs"
+                secondary="Sourced from The Pragmatic Engineer"
                 sx={{
                   marginLeft: 1,
                   ".MuiListItemText-primary": { fontWeight: "bold" },
