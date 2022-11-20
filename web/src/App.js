@@ -19,31 +19,31 @@ function StyledCard({ company, about, links, roles, locations, pros, comments, n
         <Typography variant="h5" component="div">
           { company }
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {/* { pros } */}
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            overflow: "hidden",
-            display: "-webkit-box",
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: "vertical",
-            marginBottom: "3%"
-          }}
-        >
-          { roles }
-        </Typography>
         <Typography
           variant="body2"
           sx={{
             overflow: "hidden",
             display: "-webkit-box",
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical"
+            WebkitLineClamp: 1,
+            WebkitBoxOrient: "vertical",
+            mb: 1.5
           }}
+          color="text.secondary"
         >
           <Place sx={{ fontSize: '1rem', verticalAlign: 'middle', paddingBottom: '1%'}} /> { locations }
+        </Typography>
+        
+        <Divider sx={{ marginTop: "2%", marginBottom: "2%"}} />
+        <Typography
+          variant="body1"
+          sx={{
+            overflow: "hidden",
+            display: "-webkit-box",
+            WebkitLineClamp: 4,
+            WebkitBoxOrient: "vertical",
+          }}
+        >
+          { roles }
         </Typography>
       </CardContent>
       <CardActions sx={{marginTop: "auto"}}>
