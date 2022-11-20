@@ -4,7 +4,7 @@ import extractUrls from 'extract-urls'
 import { debounce } from 'lodash'
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import { KeyRounded, GitHub, Menu, Place, Search, OpenInNew, Add, Lightbulb } from "@mui/icons-material"
-import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box, TextField, Container } from '@mui/material'
+import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box, TextField, Container, CircularProgress, Stack } from '@mui/material'
 
 function StyledCard(props) {
   return (
@@ -131,6 +131,7 @@ const ViewMoreSlider = (props) => {
 }
 
 const App = () => {
+  const [isLoading, setIsLoading] = React.useState(false)
   const [jobs, setJobs] = React.useState([])
   const [searchedJobs, setSearchedJobs] = React.useState([])
   const [menuToggle, setMenuToggle] = React.useState(false)
@@ -155,6 +156,9 @@ const App = () => {
   })
 
   React.useEffect(() => {
+    if (loading) {
+      setIsLoading(true)
+    }
     if (!loading && !error) {
       const onlyJobs = data[0]['data'].slice(3)
       const jobs = onlyJobs.map((obj, idx) => {
@@ -172,6 +176,7 @@ const App = () => {
       })
       setJobs(jobs)
       setSearchedJobs(jobs)
+      setIsLoading(false)
     }
   }, [data, error, loading])
 
@@ -314,10 +319,34 @@ const App = () => {
           </Box>
         </Toolbar>
       </AppBar>
+      {isLoading && (
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          style={{ minHeight: '100vh' }}
+        >
+          <Grid item xs={3}>
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="center"
+              gap={1}
+              sx={{ paddingTop: "2%" }}
+            >
+              <CircularProgress size={25} /> Loading
+            </Stack>
+
+          </Grid>
+        </Grid>
+      )}
       <Box sx={{ height: "100%", width: "100%", color: "black", p: 3 }}>
         <Grid display="flex" container spacing={3} columns={{ xs: 3, sm: 6, md: 12 }}>
           {searchedJobs.map(job => (
             <Grid key={job['key']} item xs={3}>
+
               <StyledCard {...job} setSelectedJob={setSelectedJob} />
             </Grid>
           ))}
