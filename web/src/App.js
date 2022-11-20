@@ -1,8 +1,8 @@
 import * as React from 'react';
 import useGoogleSheets from 'use-google-sheets';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { KeyRounded, GitHub } from "@mui/icons-material"
-import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Menu, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box, Slide, useScrollTrigger } from '@mui/material';
+import { KeyRounded, GitHub, Menu } from "@mui/icons-material"
+import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box } from '@mui/material';
 
 function StyledCard({ company, about, links, roles, locations, pros, comments, notes }) {
   return (
@@ -109,16 +109,16 @@ const App = () => {
 				>
 					<Menu />
 				</IconButton>
-				{/* <Drawer open={menuToggle} onClose={setMenuToggle(false)}>
+				<Drawer open={menuToggle} onClose={toggleMenu(false)}>
           <Box
             sx={{ width: 200 }}
             role="presentation"
-            onClick={setMenuToggle(false)}
-            onKeyDown={setMenuToggle(false)}
+            onClick={toggleMenu(false)}
+            onKeyDown={toggleMenu(false)}
           >
             <ListItemText
-              primary="Home"
-              secondary="Dev Homepage"
+              primary="Jobs"
+              secondary="The Pragmatic Engineer"
               sx={{
                 marginLeft: 1,
                 ".MuiListItemText-primary": { fontWeight: "bold" },
@@ -159,13 +159,13 @@ const App = () => {
               </Tooltip>
             </Box>
           </Box>
-        </Drawer> */}
+        </Drawer>
 				<Box display="flex" justifyContent="center" alignItems="center" sx={{ flexGrow: 1 }}>
 					
 				</Box>
 			</Toolbar>
 		</AppBar>
-      <Grid container spacing={2} columns={{ xs: 3, sm: 6, md: 12 }} sx={{paddingLeft: "4%", paddingRight: "4%", paddingTop: "2%", paddingBottom: "2%", backgroundColor: "black"}}>
+      <Grid container spacing={2} columns={{ xs: 3, sm: 6, md: 12 }} sx={{padding: "5%", backgroundColor: "black"}}>
         {jobs.map( job => (
           <Grid key={job['key']} item xs={3}>
             <StyledCard {...job} />
