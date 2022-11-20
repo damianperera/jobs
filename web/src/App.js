@@ -10,27 +10,28 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 function StyledCard({ company, about, links, roles, locations, pros, comments, notes }) {
   return (
-    <Card sx={{maxHeight: '250px'}}>
+    <Card sx={{height: '250px'}}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          { about }
+          {/* { about } */}
         </Typography>
         <Typography variant="h5" component="div">
           { company }
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          { pros }
+          {/* { pros } */}
         </Typography>
         <Typography variant="body2">
           { roles }
           <br />
-          { locations }
           <br />
-          { links }
+          Locations: { locations }
           <br />
-          { comments }
+          {/* { links } */}
           <br />
-          { notes }
+          {/* { comments } */}
+          <br />
+          {/* { notes } */}
         </Typography>
       </CardContent>
       <CardActions>
