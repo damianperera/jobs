@@ -10,7 +10,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 function StyledCard({ company, about, links, roles, locations, pros, comments, notes }) {
   return (
-    <Card>
+    <Card sx={{maxHeight: '250px'}}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           { about }
@@ -78,7 +78,7 @@ const App = () => {
     <ThemeProvider theme={darkTheme}>
       <Grid container spacing={2} sx={{padding: "1%", backgroundColor: "black"}}>
         {jobs.map( job => (
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <StyledCard key={job['key']} {...job} />
           </Grid>
         ))}
