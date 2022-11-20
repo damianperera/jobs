@@ -97,8 +97,8 @@ const App = () => {
     <ThemeProvider theme={darkTheme}>
       <Grid container spacing={2} sx={{padding: "1%", backgroundColor: "black"}}>
         {jobs.map( job => (
-          <Grid item xs={3}>
-            <StyledCard key={job['key']} {...job} />
+          <Grid key={job['key']} item xs={3}>
+            <StyledCard {...job} />
           </Grid>
         ))}
       </Grid>
