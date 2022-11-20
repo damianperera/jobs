@@ -156,9 +156,13 @@ const App = () => {
   })
 
   React.useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search)
+    const requestedCompanyId = queryParams.get("company")
+
     if (loading) {
       setIsLoading(true)
     }
+    
     if (!loading && !error) {
       const onlyJobs = data[0]['data'].slice(3)
       const jobs = onlyJobs.map((obj, idx) => {
@@ -177,6 +181,10 @@ const App = () => {
       setJobs(jobs)
       setSearchedJobs(jobs)
       setIsLoading(false)
+
+      if (requestedCompanyId) {
+        setSelectedJob(jobs[requestedCompanyId])
+      }
     }
   }, [data, error, loading])
 
