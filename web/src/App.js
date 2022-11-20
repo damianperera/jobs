@@ -60,7 +60,6 @@ function StyledCard(props) {
 }
 
 const ViewMoreSlider = (props) => {
-  console.log(props)
   const showSlider = props.selectedJob !== null
   return (
     <Drawer open={showSlider} anchor="right" onClose={() => { props.setSelectedJob(null) }} >
