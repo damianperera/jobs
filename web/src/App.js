@@ -1,6 +1,7 @@
 import * as React from 'react'
 import useGoogleSheets from 'use-google-sheets'
 import extractUrls from 'extract-urls'
+import { debounce } from 'lodash'
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import { KeyRounded, GitHub, Menu, Place, Search, OpenInNew } from "@mui/icons-material"
 import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box, TextField, Container } from '@mui/material'
@@ -258,14 +259,15 @@ const App = () => {
                 id="search"
                 placeholder={`Search from ${jobs.length} community sourced jobs in tech`}
                 variant="outlined"
-                onChange={(event) => {
-                  const text = event.target.value
-                  if (text) {
-                    setSearchedJobs(jobs.filter(job => Object.keys(job).some(key => typeof job[key] === 'string' && job[key].toLowerCase().includes(text.toLowerCase()))))
-                  } else {
-                    setSearchedJobs(jobs)
-                  }
-                }}
+                onChange={debounce((event) => {
+                    const text = event.target.value
+                    if (text) {
+                      setSearchedJobs(jobs.filter(job => Object.keys(job).some(key => typeof job[key] === 'string' && job[key].toLowerCase().includes(text.toLowerCase()))))
+                    } else {
+                      setSearchedJobs(jobs)
+                    }
+                  }, 250)
+                }
                 sx={{
                   border: "1px solid rgba(81, 81, 81, 1)",
                   borderRadius: "4px",
