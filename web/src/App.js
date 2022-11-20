@@ -170,7 +170,7 @@ const App = () => {
 				</Box>
 			</Toolbar>
 		</AppBar>
-      <Grid container spacing={2} columns={{ xs: 3, sm: 6, md: 12 }} sx={{padding: "5%", backgroundColor: "black"}}>
+      <Grid container spacing={2} columns={{ xs: 3, sm: 6, md: 12 }} sx={{paddingLeft: "5%", paddingRight: "5%", paddingTop: "1%", backgroundColor: "black"}}>
         {jobs.map( job => (
           <Grid key={job['key']} item xs={3}>
             <StyledCard {...job}/>
