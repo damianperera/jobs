@@ -10,7 +10,14 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 function StyledCard({ company, about, links, roles, locations, pros, comments, notes }) {
   return (
-    <Card sx={{height: '250px'}}>
+    <Card sx={{
+      height: '250px',
+      ".MuiCard-root": {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+      }
+    }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {/* { about } */}
@@ -21,17 +28,28 @@ function StyledCard({ company, about, links, roles, locations, pros, comments, n
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           {/* { pros } */}
         </Typography>
-        <Typography variant="body2">
+        <Typography
+          variant="body2"
+          sx={{
+            overflow: "hidden",
+            display: "-webkit-box",
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: "vertical",
+            marginBottom: "3%"
+          }}
+        >
           { roles }
-          <br />
-          <br />
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            overflow: "hidden",
+            display: "-webkit-box",
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: "vertical"
+          }}
+        >
           Locations: { locations }
-          <br />
-          {/* { links } */}
-          <br />
-          {/* { comments } */}
-          <br />
-          {/* { notes } */}
         </Typography>
       </CardContent>
       <CardActions>
