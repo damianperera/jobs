@@ -60,6 +60,7 @@ function StyledCard(props) {
 }
 
 const ViewMoreSlider = (props) => {
+  console.log(props)
   const showSlider = props.selectedJob !== null
   return (
     <Drawer open={showSlider} anchor="right" onClose={() => { props.setSelectedJob(null) }} >
@@ -67,7 +68,51 @@ const ViewMoreSlider = (props) => {
         sx={{ width: 600, maxWidth: "80vw" }}
         role="presentation"
       >
-        {JSON.stringify(props.selectedJob)}
+        {showSlider && 
+          <Box sx={{ "& .MuiListItemText-root": { paddingTop: "1%", paddingLeft: "1%", paddingBottom: "2%", paddingRight: "1%" } }}>
+            <ListItemText
+              primary={props.selectedJob.company}
+              secondary={props.selectedJob.about}
+              sx={{
+                marginLeft: 1,
+                ".MuiListItemText-primary": { fontWeight: "bold", fontSize: 30 },
+              }}
+            />
+            <Divider />
+            <ListItemText
+              primary="Locations"
+              secondary={props.selectedJob.locations ?? "N/A"}
+              sx={{
+                marginLeft: 1,
+                ".MuiListItemText-primary": { fontWeight: "bold", fontSize: 14 },
+              }}
+            />
+            <ListItemText
+              primary="Vacancies"
+              secondary={props.selectedJob.roles ?? "N/A"}
+              sx={{
+                marginLeft: 1,
+                ".MuiListItemText-primary": { fontWeight: "bold", fontSize: 14 },
+              }}
+            />
+            <ListItemText
+              primary="Review"
+              secondary={props.selectedJob.pros ?? "N/A"}
+              sx={{
+                marginLeft: 1,
+                ".MuiListItemText-primary": { fontWeight: "bold", fontSize: 14 },
+              }}
+            />
+            <ListItemText
+              primary="Notes from Gergely Orosz"
+              secondary={props.selectedJob.notes ?? "N/A"}
+              sx={{
+                marginLeft: 1,
+                ".MuiListItemText-primary": { fontWeight: "bold", fontSize: 14 },
+              }}
+            />
+          </Box>
+        }
       </Box>
     </Drawer>
   )
