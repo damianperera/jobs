@@ -3,7 +3,7 @@ import useGoogleSheets from 'use-google-sheets'
 import extractUrls from 'extract-urls'
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import { KeyRounded, GitHub, Menu, Place, Search } from "@mui/icons-material"
-import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box, TextField, Container } from '@mui/material'
+import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box, TextField, Container, Slide } from '@mui/material'
 
 function StyledCard(props) {
   return (
@@ -46,13 +46,30 @@ function StyledCard(props) {
         </Typography>
       </CardContent>
       <CardActions sx={{ marginTop: "auto" }}>
-        {props.links && props.links.map((link, idx) => (
+        {/* {props.links && props.links.map((link, idx) => (
           <Button key={idx} size="small" onClick={() => {
             window.open(link, "_blank", "noopener,noreferrer")
           }}>Link {idx + 1}</Button>
-        ))}
+        ))} */}
+        <Button size="small" onClick={() => {
+          props.setSelectedJob(props)
+        }}>View More</Button>
       </CardActions>
     </Card>
+  )
+}
+
+const ViewMoreSlider = (props) => {
+  const showSlider = props.selectedJob !== null
+  return (
+    <Drawer open={showSlider} anchor="right" onClose={() => { props.setSelectedJob(null) }} >
+      <Box
+        sx={{ width: 350 }}
+        role="presentation"
+      >
+        {JSON.stringify(props.selectedJob)}
+      </Box>
+    </Drawer>
   )
 }
 
@@ -60,6 +77,7 @@ const App = () => {
   const [jobs, setJobs] = React.useState([])
   const [searchedJobs, setSearchedJobs] = React.useState([])
   const [menuToggle, setMenuToggle] = React.useState(false)
+  const [selectedJob, setSelectedJob] = React.useState(null)
 
   const toggleMenu = (open) => (event) => {
     if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
@@ -103,6 +121,7 @@ const App = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
+      <ViewMoreSlider selectedJob={selectedJob} setSelectedJob={setSelectedJob} />
       <AppBar position="sticky">
         <Toolbar sx={{ height: "10vh" }}>
           <IconButton
@@ -217,7 +236,7 @@ const App = () => {
         <Grid display="flex" container spacing={3} columns={{ xs: 3, sm: 6, md: 12 }}>
           {searchedJobs.map(job => (
             <Grid key={job['key']} item xs={3}>
-              <StyledCard {...job} />
+              <StyledCard {...job} setSelectedJob={setSelectedJob} />
             </Grid>
           ))}
         </Grid>
