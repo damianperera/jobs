@@ -112,7 +112,7 @@ const ViewMoreSlider = (props) => {
             />
             <Divider />
             {
-              props.selectedJob.links.map((link, idx) => (
+              props.selectedJob.links && props.selectedJob.links.map((link, idx) => (
                 <ListItem key={idx} disablePadding>
                     <ListItemButton
                       onClick={() => {
@@ -122,7 +122,7 @@ const ViewMoreSlider = (props) => {
                       <ListItemIcon>
                         <OpenInNew />
                       </ListItemIcon>
-                      <ListItemText primary={`Open Link ${idx + 1}`} sx={{ marginLeft: "-5%" }} />
+                      <ListItemText primary={`View Vacancies ${props.selectedJob.links.length === 1 ? '' : idx + 1}`} sx={{ marginLeft: "-3%" }} />
                     </ListItemButton>
                   </ListItem>
               ))
