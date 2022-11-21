@@ -6,7 +6,11 @@ import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { KeyRounded, GitHub, Menu, Place, Search, OpenInNew, Add, Lightbulb, ContentCopy } from '@mui/icons-material'
 import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box, TextField, Container, CircularProgress, Stack } from '@mui/material'
 
-function StyledCard(props) {
+const isStringEmpty = (val) => {
+  return (!val || val.length === 0 || !val.trim());
+};
+
+const StyledCard = (props) => {
   return (
     <Card sx={{
       height: '250px',
@@ -76,7 +80,7 @@ const ViewMoreSlider = (props) => {
             <Divider />
             <ListItemText
               primary='Locations'
-              secondary={props.selectedJob.locations ?? '-'}
+              secondary={isStringEmpty(props.selectedJob.locations) ? '-' : props.selectedJob.locations}
               sx={{
                 marginLeft: 1,
                 '.MuiListItemText-primary': { fontWeight: 'bold', fontSize: 14 },
@@ -84,7 +88,7 @@ const ViewMoreSlider = (props) => {
             />
             <ListItemText
               primary='Vacancies'
-              secondary={props.selectedJob.roles ?? '-'}
+              secondary={isStringEmpty(props.selectedJob.roles) ? '-' : props.selectedJob.roles}
               sx={{
                 marginLeft: 1,
                 '.MuiListItemText-primary': { fontWeight: 'bold', fontSize: 14 },
@@ -101,7 +105,7 @@ const ViewMoreSlider = (props) => {
             />
             <ListItemText
               primary='Positives'
-              secondary={props.selectedJob.pros ?? '-'}
+              secondary={isStringEmpty(props.selectedJob.pros) ? '-' : props.selectedJob.pros}
               sx={{
                 marginLeft: 1,
                 '.MuiListItemText-primary': { fontWeight: 'bold', fontSize: 14 },
@@ -109,15 +113,24 @@ const ViewMoreSlider = (props) => {
             />
             <ListItemText
               primary='Comments'
-              secondary={props.selectedJob.comments ?? '-'}
+              secondary={isStringEmpty(props.selectedJob.comments) ? '-' : props.selectedJob.comments}
               sx={{
                 marginLeft: 1,
                 '.MuiListItemText-primary': { fontWeight: 'bold', fontSize: 14 },
               }}
             />
+            <Divider />
             <ListItemText
-              primary='Notes from the Curator'
-              secondary={props.selectedJob.notes ? `${props.selectedJob.notes} ~ Gergely Orosz` : '-'}
+              primary='From the Curator'
+              sx={{
+                marginLeft: 1,
+                marginBottom: -2,
+                '.MuiListItemText-primary': { fontWeight: 'bold', fontSize: 18 },
+              }}
+            />
+            <ListItemText
+              primary='Notes'
+              secondary={isStringEmpty(props.selectedJob.notes) ? '-' : `${props.selectedJob.notes} ~ Gergely Orosz`}
               sx={{
                 marginLeft: 1,
                 '.MuiListItemText-primary': { fontWeight: 'bold', fontSize: 14 },
@@ -135,7 +148,7 @@ const ViewMoreSlider = (props) => {
                     <ListItemIcon>
                       <OpenInNew />
                     </ListItemIcon>
-                    <ListItemText primary={`View Vacancies ${props.selectedJob.links.length === 1 ? '' : idx + 1}`} sx={{ marginLeft: '-3%' }} />
+                    <ListItemText primary={`View Vacancies ${props.selectedJob.links.length === 1 ? '' : ` - ${idx + 1}`}`} sx={{ marginLeft: '-3%' }} />
                   </ListItemButton>
                 </ListItem>
               ))
