@@ -18,10 +18,16 @@ const StyledCard = (props) => {
       flexDirection: 'column'
     }}>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
-          {/* { about } */}
-        </Typography>
-        <Typography variant='h5' component='div'>
+        <Typography
+          variant='h5'
+          component='div'
+          sx={{
+            overflow: 'hidden',
+            display: '-webkit-box',
+            WebkitLineClamp: 1,
+            WebkitBoxOrient: 'vertical'
+          }}
+        >
           {props.company}
         </Typography>
         <Typography
