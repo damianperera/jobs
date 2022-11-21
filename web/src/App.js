@@ -204,10 +204,11 @@ const App = () => {
     },
   })
 
-  React.useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search)
-    const requestedCompanyId = queryParams.get('company')
+  const queryParams = new URLSearchParams(window.location.search)
+  const requestedCompanyId = queryParams.get('company')
+  const searchText = queryParams.get('q')
 
+  React.useEffect(() => {
     if (loading) {
       setIsLoading(true)
     }
@@ -232,11 +233,15 @@ const App = () => {
       setSearchedJobs(jobs)
       setIsLoading(false)
 
+      if (searchText) {
+        setSearchedJobs(jobs.filter(job => Object.keys(job).some(key => typeof job[key] === 'string' && job[key].toLowerCase().includes(searchText.toLowerCase()))))
+      }
+
       if (requestedCompanyId) {
         setSelectedJob(jobs[requestedCompanyId])
       }
     }
-  }, [data, error, loading])
+  }, [data, error, loading, searchText, requestedCompanyId])
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -339,6 +344,7 @@ const App = () => {
                 autoFocus
                 required
                 id='search'
+                value={searchText && searchText}
                 placeholder={`Search from ${jobs.length} community sourced jobs in tech`}
                 variant='outlined'
                 onChange={debounce((event) => {
