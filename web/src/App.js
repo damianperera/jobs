@@ -343,8 +343,8 @@ const App = () => {
               <TextField
                 autoFocus
                 required
+                defaultValue={searchText && searchText}
                 id='search'
-                value={searchText && searchText}
                 placeholder={`Search from ${jobs.length} community sourced jobs in tech`}
                 variant='outlined'
                 onChange={debounce((event) => {
