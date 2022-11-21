@@ -206,7 +206,7 @@ const App = () => {
 
   const queryParams = new URLSearchParams(window.location.search)
   const requestedCompanyId = queryParams.get('company')
-  const searchText = queryParams.get('q')
+  const searchText = queryParams.get('q') ?? ''
 
   React.useEffect(() => {
     if (loading) {
