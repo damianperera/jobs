@@ -99,7 +99,7 @@ const ViewMoreSlider = (props) => {
               primary='From the Community'
               sx={{
                 marginLeft: 1,
-                marginBottom: -2,
+                marginBottom: -1,
                 '.MuiListItemText-primary': { fontWeight: 'bold', fontSize: 18 },
               }}
             />
@@ -124,7 +124,7 @@ const ViewMoreSlider = (props) => {
               primary='From the Curator'
               sx={{
                 marginLeft: 1,
-                marginBottom: -2,
+                marginBottom: -1,
                 '.MuiListItemText-primary': { fontWeight: 'bold', fontSize: 18 },
               }}
             />
