@@ -3,7 +3,7 @@ import useGoogleSheets from 'use-google-sheets'
 import extractUrls from 'extract-urls'
 import { debounce } from 'lodash'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import { KeyRounded, GitHub, Menu, Place, Search, OpenInNew, Add, Lightbulb, ContentCopy } from '@mui/icons-material'
+import { KeyRounded, GitHub, Menu, Place, Search, OpenInNew, Add, Help, ContentCopy, BugReport } from '@mui/icons-material'
 import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, AppBar, Toolbar, IconButton, Drawer, ListItemText, Divider, ListItem, ListItemIcon, ListItemButton, Tooltip, Box, TextField, Container, CircularProgress, Stack } from '@mui/material'
 
 const isStringEmpty = (val) => {
@@ -294,7 +294,7 @@ const App = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <Lightbulb />
+                    <Help />
                   </ListItemIcon>
                   <ListItemText primary='Learn More' sx={{ marginLeft: '-10%' }} />
                 </ListItemButton>
@@ -307,6 +307,20 @@ const App = () => {
                 }}
               >
                 <Divider />
+                <Tooltip title='Report a bug'>
+                  <ListItem key='issues' disablePadding>
+                    <ListItemButton
+                      onClick={() => {
+                        window.open('https://github.com/damianperera/jobs/issues', '_blank', 'noopener,noreferrer')
+                      }}
+                    >
+                      <ListItemIcon>
+                        <BugReport />
+                      </ListItemIcon>
+                      <ListItemText primary='Report a bug' sx={{ marginLeft: '-10%' }} />
+                    </ListItemButton>
+                  </ListItem>
+                </Tooltip>
                 <Tooltip title='GitHub'>
                   <ListItem key='repository' disablePadding>
                     <ListItemButton
