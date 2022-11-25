@@ -2,65 +2,10 @@ import * as React from 'react'
 import useGoogleSheets from 'use-google-sheets'
 import extractUrls from 'extract-urls'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
-import { Place } from '@mui/icons-material'
-import { CssBaseline, Typography, Button, CardContent, CardActions, Card, Grid, Divider, Box, CircularProgress, Stack } from '@mui/material'
+import { CssBaseline, Grid, Box, CircularProgress, Stack } from '@mui/material'
 import TopBar from './components/TopBar'
 import ViewMoreSlider from './components/ViewMoreSlider'
-
-const StyledCard = (props) => {
-  return (
-    <Card sx={{
-      height: '250px',
-      display: 'flex',
-      flexDirection: 'column'
-    }}>
-      <CardContent>
-        <Typography
-          variant='h5'
-          component='div'
-          sx={{
-            overflow: 'hidden',
-            display: '-webkit-box',
-            WebkitLineClamp: 1,
-            WebkitBoxOrient: 'vertical'
-          }}
-        >
-          {props.company}
-        </Typography>
-        <Typography
-          variant='body2'
-          sx={{
-            overflow: 'hidden',
-            display: '-webkit-box',
-            WebkitLineClamp: 1,
-            WebkitBoxOrient: 'vertical',
-            mb: 1.5
-          }}
-          color='text.secondary'
-        >
-          <Place sx={{ fontSize: '1rem', verticalAlign: 'middle', paddingBottom: '1%' }} /> {props.locations}
-        </Typography>
-        <Divider sx={{ marginTop: '2%', marginBottom: '3%' }} />
-        <Typography
-          variant='body1'
-          sx={{
-            overflow: 'hidden',
-            display: '-webkit-box',
-            WebkitLineClamp: 4,
-            WebkitBoxOrient: 'vertical',
-          }}
-        >
-          {props.roles}
-        </Typography>
-      </CardContent>
-      <CardActions sx={{ marginTop: 'auto' }}>
-        <Button size='small' onClick={() => {
-          props.setSelectedJob(props)
-        }}>Learn More</Button>
-      </CardActions>
-    </Card>
-  )
-}
+import StyledCard from './components/StyledCard'
 
 const App = () => {
   const [isLoading, setIsLoading] = React.useState(false)
