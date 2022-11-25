@@ -3,9 +3,7 @@ import useGoogleSheets from 'use-google-sheets'
 import extractUrls from 'extract-urls'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { CssBaseline, Grid, Box, CircularProgress, Stack } from '@mui/material'
-import TopBar from './components/TopBar'
-import ViewMoreSlider from './components/ViewMoreSlider'
-import StyledCard from './components/StyledCard'
+import { Card, ViewMoreSlider, TopBar } from './components'
 
 const App = () => {
   const [isLoading, setIsLoading] = React.useState(false)
@@ -94,7 +92,7 @@ const App = () => {
         <Grid display='flex' container spacing={3} columns={{ xs: 3, sm: 6, md: 12 }}>
           {searchedJobs.map(job => (
             <Grid key={job['key']} item xs={3}>
-              <StyledCard {...job} setSelectedJob={setSelectedJob} />
+              <Card {...job} setSelectedJob={setSelectedJob} />
             </Grid>
           ))}
         </Grid>
