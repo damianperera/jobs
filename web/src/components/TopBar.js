@@ -56,10 +56,10 @@ const TopBar = ({ jobs, setSearchedJobs }) => {
                   <ListItemText primary='Add a Company' sx={{ marginLeft: '-10%' }} />
                 </ListItemButton>
               </ListItem>
-              <ListItem key='google-sheets-source' disablePadding>
+              <ListItem key='about' disablePadding>
                 <ListItemButton
                   onClick={() => {
-                    window.open('https://docs.google.com/spreadsheets/d/1SMKjAgYxG1iAi_G4E3DJik17-EkO8QiTo6obeZCiBAQ/htmlview?usp=sharing&pru=AAABhLTG1qE*m-nkG9q9MVwWQN9sQQ9DbQ#', '_blank', 'noopener,noreferrer')
+                    window.open('https://blog.pragmaticengineer.com/who-is-hiring-2022/', '_blank', 'noopener,noreferrer')
                   }}
                 >
                   <ListItemIcon>
