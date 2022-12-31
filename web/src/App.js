@@ -32,8 +32,9 @@ const App = () => {
     }
 
     if (!loading && !error) {
-      const onlyJobs = data[0]['data'].slice(3)
+      const onlyJobs = data[0]['data'].slice(4)
       const jobs = onlyJobs.map((obj, idx) => {
+        console.log(obj)
         const job = {}
         job['key'] = idx
         job['id'] = idx
